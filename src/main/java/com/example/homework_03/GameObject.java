@@ -17,12 +17,14 @@ public abstract class GameObject {
 
      GraphicsContext gc;
    private Image sprite;
+   // graphics rendering called from animation timer
     void draw(GraphicsContext graphicsContext){
         gc= graphicsContext;
         if (sprite!=null){gc.drawImage(sprite, (int) (x-bBoxW/2),(int) (y-bBoxH/2));}
         gc.setStroke(Color.AQUA);
         if (debug){gc.strokeRect(x-bBoxW/2, y-bBoxH/2, bBoxW, bBoxH);}
     }
+    // backend logic that gets called each frame
     abstract void toDo();
 
    public void setX(float x){

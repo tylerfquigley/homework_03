@@ -8,7 +8,7 @@ public class Player extends GameObject implements inputHandler{
     private  boolean left=false;
     private  boolean up=false;
     private boolean down=false;
-    private int speed=3;
+    private int speed=2;
     @Override
     void toDo() {
         setVsp(0);
