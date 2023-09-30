@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -24,6 +25,7 @@ public class MazeApp extends Application{
         Player p = new Player();
         p.bindToScene(scene);
         p.loadSprite("robot.png");
+        p.setMaze(new Image("maze.png"));
         controller.addToWorld(p);
         controller.startRendering();
        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {

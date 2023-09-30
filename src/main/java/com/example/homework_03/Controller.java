@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.image.PixelReader;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.*;
 import javafx.scene.Scene;
@@ -26,7 +27,7 @@ public class Controller implements Runnable{
     private int frameRate=60;
     private GraphicsContext gc;
     private Thread t1;
-
+    private Image maze1;
     private AnimationTimer a1;
     private ArrayList<GameObject> world;
     @FXML
@@ -35,7 +36,7 @@ public class Controller implements Runnable{
     @FXML
     public void initialize(){
         gc = can.getGraphicsContext2D();
-
+        maze1 = new Image("maze.png");
         world = new ArrayList<GameObject>();
     }
 
@@ -44,9 +45,7 @@ public class Controller implements Runnable{
             @Override
             public void handle(long now) {
                 gc.clearRect(0,0,can.getWidth(),can.getHeight());
-                gc.drawImage(new Image("maze.png"),0,0);
-
-
+                gc.drawImage(maze1,0,0);
                 for(int i=0;i<world.size();i++){world.get(i).draw(gc);}
             }
         };
