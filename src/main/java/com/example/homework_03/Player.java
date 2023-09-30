@@ -40,6 +40,10 @@ public class Player extends GameObject implements inputHandler{
             case D -> right=true;
             case S -> down=true;
             case A -> left=true;
+            case UP -> up=true;
+            case RIGHT -> right=true;
+            case DOWN -> down=true;
+            case LEFT -> left=true;
 
         }
     }
@@ -51,6 +55,10 @@ public class Player extends GameObject implements inputHandler{
             case D -> right=false;
             case S -> down=false;
             case A -> left=false;
+            case UP -> up=false;
+            case RIGHT -> right=false;
+            case DOWN -> down=false;
+            case LEFT -> left=false;
         }
     }
 
