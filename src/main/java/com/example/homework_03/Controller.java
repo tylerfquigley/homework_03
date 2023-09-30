@@ -25,18 +25,24 @@ public class Controller implements Runnable{
     private boolean left=false;
     private boolean right=false;
     private int frameRate=60;
-    private GraphicsContext gc;
+    public GraphicsContext gc;
+
+    public GraphicsContext gc2;
     private Thread t1;
     private Image maze1;
+    private  Image maze2;
     private AnimationTimer a1;
     private ArrayList<GameObject> world;
     @FXML
     Canvas can;
-
+    @FXML
+    Canvas can2;
     @FXML
     public void initialize(){
         gc = can.getGraphicsContext2D();
+        gc2 = can2.getGraphicsContext2D();
         maze1 = new Image("maze.png");
+        maze2= new Image("maze2.png");
         world = new ArrayList<GameObject>();
     }
 
@@ -44,9 +50,13 @@ public class Controller implements Runnable{
         a1 = new AnimationTimer() {
             @Override
             public void handle(long now) {
+                //first maze
                 gc.clearRect(0,0,can.getWidth(),can.getHeight());
                 gc.drawImage(maze1,0,0);
-                for(int i=0;i<world.size();i++){world.get(i).draw(gc);}
+                //second maze
+                gc2.clearRect(0,0,can2.getWidth(),can2.getHeight());
+                gc2.drawImage(maze2,0,0);
+                for(int i=0;i<world.size();i++){world.get(i).draw();}
             }
         };
         a1.start();

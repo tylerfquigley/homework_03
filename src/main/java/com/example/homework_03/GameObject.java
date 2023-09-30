@@ -14,19 +14,22 @@ public abstract class GameObject {
    private float vsp=0;
    private int bBoxW=0;
     private int bBoxH=0;
+    private GraphicsContext gc;
 
-     GraphicsContext gc;
    private Image sprite;
    // graphics rendering called from animation timer
-    void draw(GraphicsContext graphicsContext){
-        gc= graphicsContext;
+    void draw(){
+        if(gc!=null){
         if (sprite!=null){gc.drawImage(sprite, (int) (x-bBoxW/2),(int) (y-bBoxH/2));}
         gc.setStroke(Color.AQUA);
-        if (debug){gc.strokeRect(x-bBoxW/2, y-bBoxH/2, bBoxW, bBoxH);}
+        if (debug){gc.strokeRect(x-bBoxW/2, y-bBoxH/2, bBoxW, bBoxH);}}
     }
     // backend logic that gets called each frame
     abstract void toDo();
 
+    public void setGraphicsContext(GraphicsContext graphicsContext){
+        gc= graphicsContext;
+    }
    public void setX(float x){
        this.x=x;
    }
@@ -49,8 +52,8 @@ public abstract class GameObject {
     public boolean loadSprite(String path){
        try {
            sprite = new Image(path);
-           setbBoxH((int)sprite.getWidth());
-           setbBoxW((int)sprite.getHeight());
+           setbBoxW((int)sprite.getWidth());
+           setbBoxH((int)sprite.getHeight());
            return true;
        }
        catch (Exception e){
