@@ -1,6 +1,7 @@
 package com.example.homework_03;
 
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 

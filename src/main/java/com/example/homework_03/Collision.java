@@ -5,22 +5,24 @@ import javafx.scene.image.PixelReader;
 
 public class Collision {
     private static int color= -16755815;
+    private static int color2=-16760833;
     static boolean pixelCollision(GameObject gameObject, PixelReader pixelReader,int xOff, int yOff){
             int w = gameObject.getbBoxW();
             int h = gameObject.getbBoxH();
-
             for (int i=0;i< h;i++){
                 for (int j=0;j<w;j++){
                     //temp store cordinates to check
                     int xTmp= (int) (gameObject.getX()-w/2)+j+xOff;
                     int yTmp = (int) (gameObject.getY()-h/2)+i+yOff;
+                    int tmpCol=0;
                     try {
-
-
-                    if (pixelReader.getArgb(xTmp,yTmp)==color){
-                        return true;
-                    }} catch (Exception e) {
+                   tmpCol=pixelReader.getArgb(xTmp,yTmp);
+                    }
+                    catch (Exception e) {
                         // do nothing if pixel cordinates invalid
+                    }
+                    if (tmpCol==color||tmpCol==color2){
+                        return true;
                     }
                 }
 

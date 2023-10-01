@@ -31,16 +31,16 @@
       </MenuBar>
    </top>
    <center>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab text="Untitled Tab 1">
+          <Tab text="Maze1" fx:id="tab1">
                <content>
                   <Canvas id="canvas1" fx:id="can" height="799.0" nodeOrientation="INHERIT" width="1063.0" />
                </content>
           </Tab>
-          <Tab text="Untitled Tab 2">
+          <Tab text="Maze2" fx:id="tab2">
                <content>
-                  <Canvas fx:id="can2" id="canvas2" height="757.0" width="1065.0" />
+                  <Canvas id="canvas2" fx:id="can2" height="757.0" width="1065.0" />
                </content>
           </Tab>
         </tabs>

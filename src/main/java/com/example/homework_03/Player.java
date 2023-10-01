@@ -1,11 +1,12 @@
 package com.example.homework_03;
 
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.input.KeyEvent;
 
-public class Player extends GameObject implements inputHandler{
+public class Player extends GameObject{
     private boolean right=false;
     private  boolean left=false;
     private  boolean up=false;
@@ -19,7 +20,15 @@ public class Player extends GameObject implements inputHandler{
     }
     @Override
     void toDo() {
+        //check if tab is active
 
+        if(Controller.currentTab()==getTabNumber()){
+        //fetch inputs from controller
+        right= Controller.isRight();
+        left= Controller.isLeft();
+        up= Controller.isUp();
+        down= Controller.isDown();
+        //reset speed
         setVsp(0);
         setHsp(0);
         if (right&&!left){setHsp(speed);}
@@ -30,43 +39,10 @@ public class Player extends GameObject implements inputHandler{
                 mazeCollide();
         }
         setX(getX()+getHsp());
-        setY(getY()+getVsp());
+        setY(getY()+getVsp());}
     }
 
-    @Override
-    public void setInputs(KeyEvent e) {
-        switch (e.getCode()) {
-            case W -> up=true;
-            case D -> right=true;
-            case S -> down=true;
-            case A -> left=true;
-            case UP -> up=true;
-            case RIGHT -> right=true;
-            case DOWN -> down=true;
-            case LEFT -> left=true;
 
-        }
-    }
-
-    @Override
-    public void unSetInputs(KeyEvent e) {
-        switch (e.getCode()){
-            case W -> up=false;
-            case D -> right=false;
-            case S -> down=false;
-            case A -> left=false;
-            case UP -> up=false;
-            case RIGHT -> right=false;
-            case DOWN -> down=false;
-            case LEFT -> left=false;
-        }
-    }
-
-    @Override
-    public void bindToScene(Scene scene) {
-        scene.setOnKeyReleased(this::unSetInputs);
-        scene.setOnKeyPressed(this::setInputs);
-    }
     //maze collision
    private void mazeCollide(){
 

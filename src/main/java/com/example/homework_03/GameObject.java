@@ -15,7 +15,7 @@ public abstract class GameObject {
    private int bBoxW=0;
     private int bBoxH=0;
     private GraphicsContext gc;
-
+    private int tabNumber=0;
    private Image sprite;
    // graphics rendering called from animation timer
     void draw(){
@@ -80,4 +80,14 @@ public abstract class GameObject {
        return bBoxH;
     }
 
+    public GraphicsContext getGc() {
+        return gc;
+    }
+    public void setTabNumber(int tabNumber){
+        this.tabNumber=tabNumber;
+    }
+
+    public int getTabNumber(){
+        return tabNumber;
+    }
 }
