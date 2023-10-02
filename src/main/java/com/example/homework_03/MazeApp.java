@@ -30,7 +30,7 @@ public class MazeApp extends Application{
         p.setTabNumber(1);
         controller.addToWorld(p);
         //player maze 2
-        Player p2 = new Player();
+        Car p2 = new Car();
         p2.loadSprite("car.png");
         p2.setMaze(new Image("maze2.png"));
         p2.setGraphicsContext(controller.gc2);
@@ -43,6 +43,7 @@ public class MazeApp extends Application{
        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
+                System.out.println("closing threads");
                 controller.stopRendering();
             }
         });

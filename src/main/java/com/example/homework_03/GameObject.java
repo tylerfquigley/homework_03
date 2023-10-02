@@ -1,14 +1,21 @@
 package com.example.homework_03;
 
+import javafx.geometry.Rectangle2D;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Rotate;
 
 import java.nio.file.InvalidPathException;
 
 public abstract class GameObject {
    private boolean debug =true;
    private float x=0;
+   private int newRotation =0;
+   private int curentRotation=0;
    private float y=0;
    private float hsp=0;
    private float vsp=0;
@@ -19,10 +26,15 @@ public abstract class GameObject {
    private Image sprite;
    // graphics rendering called from animation timer
     void draw(){
+        //only draw if on tab
+        if(tabNumber==Controller.currentTab()){
         if(gc!=null){
-        if (sprite!=null){gc.drawImage(sprite, (int) (x-bBoxW/2),(int) (y-bBoxH/2));}
+        if (sprite!=null){
+           // checkRotate();
+            gc.drawImage(sprite, (int) (x-bBoxW/2),(int) (y-bBoxH/2));
+        }
         gc.setStroke(Color.AQUA);
-        if (debug){gc.strokeRect(x-bBoxW/2, y-bBoxH/2, bBoxW, bBoxH);}}
+        if (debug){gc.strokeRect(x-bBoxW/2, y-bBoxH/2, bBoxW, bBoxH);}}}
     }
     // backend logic that gets called each frame
     abstract void toDo();
@@ -89,5 +101,30 @@ public abstract class GameObject {
 
     public int getTabNumber(){
         return tabNumber;
+    }
+    public int getRotation(){
+        return curentRotation;
+    }
+    public void setRotation(int rotation){
+        this.newRotation= rotation;
+    }
+    //sets new roatation rleative to the original not curent rotation
+    private void checkRotate(){
+        //check for change
+        if(curentRotation!=newRotation){
+            // not working
+            ImageView iv = new ImageView(sprite);
+            int tmpR=(-curentRotation+newRotation);
+            SnapshotParameters params = new SnapshotParameters();
+            params.setFill(Color.TRANSPARENT);
+            params.setTransform(new Rotate(tmpR, sprite.getWidth() / 2, sprite.getHeight() / 2));
+            params.setViewport(new Rectangle2D(0, 0, sprite.getWidth(), sprite.getHeight()));
+            //updates the rotation so it dousnt eep rotating every frame actually made it crash
+            curentRotation = newRotation;
+            Image tmpImg=iv.snapshot(params,null);
+            sprite=tmpImg;
+
+
+        }
     }
 }

@@ -57,6 +57,11 @@ public class Controller implements Runnable,inputHandler{
         maze1 = new Image("maze.png");
         maze2= new Image("maze2.png");
         world = new ArrayList<GameObject>();
+        can.setWidth(maze1.getWidth());
+        can.setHeight(maze1.getHeight());
+        can2.setWidth(maze2.getWidth());
+        can2.setHeight(maze2.getHeight());
+
         //check for tab change and rrequest focus
         tabPane.getSelectionModel().selectedItemProperty().addListener(((observableValue, ov, nv) -> {
                 if(nv.equals(tab1)){
@@ -77,11 +82,13 @@ public class Controller implements Runnable,inputHandler{
             public void handle(long now) {
 
                 //first maze
+                if (Controller.tabNumber==1){
                 gc.clearRect(0,0,can.getWidth(),can.getHeight());
-                gc.drawImage(maze1,0,0);
+                gc.drawImage(maze1,0,0);}
                 //second maze
+                if (Controller.tabNumber==2){
                 gc2.clearRect(0,0,can2.getWidth(),can2.getHeight());
-                gc2.drawImage(maze2,0,0);
+                gc2.drawImage(maze2,0,0);}
                 for(int i=0;i<world.size();i++){world.get(i).draw();}
             }
         };

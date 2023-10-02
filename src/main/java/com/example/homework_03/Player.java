@@ -36,7 +36,7 @@ public class Player extends GameObject{
         if (up&&!down){setVsp(-speed);}
         if (!up&&down){setVsp(speed);}
         if (pixelReader!=null){
-                mazeCollide();
+            mazeCollide();
         }
         setX(getX()+getHsp());
         setY(getY()+getVsp());}
