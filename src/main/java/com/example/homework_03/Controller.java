@@ -74,7 +74,14 @@ public class Controller implements Runnable,inputHandler{
             }
         }));
     }
-
+    @FXML
+    private void reset(){
+        for (int i=0; i<world.size();i++){
+            if (world.get(i).getTabNumber()==currentTab()){
+                world.get(i).reset();
+            }
+        }
+    }
     public void startRendering(){
 
         a1 = new AnimationTimer() {

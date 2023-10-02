@@ -12,7 +12,9 @@ import javafx.scene.transform.Rotate;
 import java.nio.file.InvalidPathException;
 
 public abstract class GameObject {
-   private boolean debug =true;
+   private boolean debug =false;
+   private float resetX=0;
+   private float resetY=0;
    private float x=0;
    private int newRotation =0;
    private int curentRotation=0;
@@ -108,6 +110,19 @@ public abstract class GameObject {
     public void setRotation(int rotation){
         this.newRotation= rotation;
     }
+    public void setResetX(float x){
+        resetX=x;
+    }
+    public void setResetY(float y){
+        resetY=y;
+    }
+    public float getResetX(){
+        return resetX;
+    }
+    public float getResetY(){
+       return resetY;
+    }
+    abstract void reset();
     //sets new roatation rleative to the original not curent rotation
     private void checkRotate(){
         //check for change

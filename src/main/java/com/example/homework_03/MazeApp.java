@@ -19,7 +19,7 @@ public class MazeApp extends Application{
         Controller controller = new Controller();
         fxmlLoader.setController(controller);
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Maze");
+        stage.setTitle("Maze Game");
         stage.setScene(scene);
         stage.show();
         //player maze 1
@@ -28,6 +28,10 @@ public class MazeApp extends Application{
         p.setMaze(new Image("maze.png"));
         p.setGraphicsContext(controller.gc);
         p.setTabNumber(1);
+        p.setX(26);
+        p.setY(270);
+        p.setResetX(p.getX());
+        p.setResetY(p.getY());
         controller.addToWorld(p);
         //player maze 2
         Car p2 = new Car();
@@ -36,6 +40,10 @@ public class MazeApp extends Application{
         p2.setGraphicsContext(controller.gc2);
         controller.addToWorld(p2);
         p2.setTabNumber(2);
+        p2.setX(36);
+        p2.setY(36);
+        p2.setResetX(p2.getX());
+        p2.setResetY(p2.getY());
         //begin animation and thread
         controller.startRendering();
 

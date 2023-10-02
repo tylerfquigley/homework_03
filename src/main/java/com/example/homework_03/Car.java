@@ -37,4 +37,9 @@ public class Car extends Player {
         }
 
     }
+    @Override
+    void reset(){
+        super.reset();
+        loadSprite("car.png");
+    }
 }
