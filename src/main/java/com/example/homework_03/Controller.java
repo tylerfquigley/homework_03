@@ -75,7 +75,7 @@ public class Controller implements Runnable,inputHandler{
         }));
     }
     @FXML
-    private void reset(){
+    private void reset() {
         for (int i=0; i<world.size();i++){
             if (world.get(i).getTabNumber()==currentTab()){
                 world.get(i).reset();
@@ -183,5 +183,11 @@ public class Controller implements Runnable,inputHandler{
     };
     public static int currentTab(){
         return tabNumber;
+    }
+    public static void resetInputs(){
+        up=false;
+        down=false;
+        right=false;
+        left=false;
     }
 }

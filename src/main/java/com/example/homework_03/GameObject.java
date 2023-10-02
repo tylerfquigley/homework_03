@@ -9,6 +9,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 
+import java.io.IOException;
 import java.nio.file.InvalidPathException;
 
 public abstract class GameObject {
@@ -39,7 +40,7 @@ public abstract class GameObject {
         if (debug){gc.strokeRect(x-bBoxW/2, y-bBoxH/2, bBoxW, bBoxH);}}}
     }
     // backend logic that gets called each frame
-    abstract void toDo();
+    abstract void toDo() ;
 
     public void setGraphicsContext(GraphicsContext graphicsContext){
         gc= graphicsContext;

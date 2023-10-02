@@ -1,10 +1,15 @@
 package com.example.homework_03;
 
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class Player extends GameObject{
     private boolean right=false;
@@ -12,7 +17,7 @@ public class Player extends GameObject{
     private  boolean up=false;
     private boolean down=false;
     private int speed=2;
-    private PixelReader pixelReader;
+    protected PixelReader pixelReader;
     private Image image;
     public void setMaze(Image image){
         this.image = image;
@@ -44,7 +49,15 @@ public class Player extends GameObject{
         }
         setX(getX()+getHsp());
         setY(getY()+getVsp());
-        if (getX()>image.getWidth()){
+        if (checkWin()){
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    PopUp popUp = new PopUp();
+                    popUp.popUp();
+                }
+            });
+
             this.reset();
             System.out.println("you win");
         }
@@ -52,9 +65,13 @@ public class Player extends GameObject{
     }
 
 @Override
-   void reset(){
+  protected void reset()  {
         setX(getResetX());
         setY(getResetY());
+        setHsp(0);
+        setVsp(0);
+        Controller.resetInputs();
+
 }
     //maze collision
    private void mazeCollide(){
@@ -77,5 +94,9 @@ public class Player extends GameObject{
            setVsp(0);
        };
    }
-
+protected boolean checkWin(){
+        boolean w= false;
+        w=getX()>image.getWidth();
+        return  w;
+}
 }

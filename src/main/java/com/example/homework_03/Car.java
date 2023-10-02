@@ -38,8 +38,22 @@ public class Car extends Player {
 
     }
     @Override
-    void reset(){
+  protected void reset(){
         super.reset();
         loadSprite("car.png");
+    }
+    @Override
+    protected boolean checkWin(){
+        int tmp=0;
+        try {
+           tmp= pixelReader.getArgb((int) getX(), (int) getY());
+        }
+        catch (Exception e){
+            //do nothing pixel data invalid and can be ignored
+        }
+            if (tmp==-10092340){
+                return true;
+            }else {
+        return false;}
     }
 }

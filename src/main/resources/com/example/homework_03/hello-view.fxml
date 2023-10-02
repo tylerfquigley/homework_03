@@ -5,6 +5,8 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -13,7 +15,7 @@
         <tabs>
           <Tab fx:id="tab1" text="Maze1">
                <content>
-                  <Canvas id="canvas1" fx:id="can" height="799.0" nodeOrientation="INHERIT" width="1063.0" />
+                  <Canvas id="canvas1" fx:id="can" height="452.0" nodeOrientation="INHERIT" width="698.0" />
                </content>
           </Tab>
           <Tab fx:id="tab2" text="Maze2">
@@ -25,11 +27,18 @@
       </TabPane>
    </center>
    <bottom>
-      <ButtonBar prefHeight="126.0" prefWidth="1046.0" snapToPixel="false" BorderPane.alignment="CENTER">
+      <ButtonBar prefHeight="126.0" prefWidth="818.0" snapToPixel="false" BorderPane.alignment="CENTER">
         <buttons>
-            <Button mnemonicParsing="false" prefHeight="114.0" prefWidth="571.0" text="Reset" onAction="#reset"/>
+            <Button mnemonicParsing="false" onAction="#reset" prefHeight="114.0" prefWidth="571.0" text="Reset" />
           <Button mnemonicParsing="false" prefHeight="114.0" prefWidth="163.0" text="Auto Solve" />
         </buttons>
       </ButtonBar>
    </bottom>
+   <left>
+      <ImageView fitHeight="467.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@../../../wasd.png" />
+         </image>
+      </ImageView>
+   </left>
 </BorderPane>
